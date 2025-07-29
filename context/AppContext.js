@@ -42,9 +42,15 @@ export const AppProvider = ({ children }) => {
     setBookmarks(updated);
     await AsyncStorage.setItem('bookmarks', JSON.stringify(updated));
   };
+  
+
+  const removeBookmark = (wordToRemove) => {
+    setBookmarks((prev) => prev.filter((item) => item.word !== wordToRemove));
+  };
+
 
   return (
-    <AppContext.Provider value={{ history, bookmarks, addToHistory, addToBookmarks, dictionary, wordOfTheDay }}>
+    <AppContext.Provider value={{ history, bookmarks, addToHistory, addToBookmarks, dictionary, wordOfTheDay ,removeBookmark }}>
       {children}
     </AppContext.Provider>
   );
