@@ -9,13 +9,13 @@ on:
 jobs:
   build-apk:
     runs-on: ubuntu-latest
-
+    
     env:
       JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
       ANDROID_SDK_ROOT: ${{ github.workspace }}/android-sdk
       ANDROID_HOME: ${{ github.workspace }}/android-sdk
       GRADLE_USER_HOME: ${{ github.workspace }}/.gradle
-
+    
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -50,24 +50,16 @@ jobs:
       - name: Remove node_modules and Reinstall Dependencies
         run: |
           rm -rf node_modules package-lock.json yarn.lock
-          npm install
-
-      # FIX: Clean previous CMake and build artifacts to avoid stale/missing codegen outputs
-      - name: Clean Previous CMake Artifacts
-        run: |
-          rm -rf android/app/.cxx
-          rm -rf android/app/build/generated
-
-      # FIX: Ensure codegen files are generated for autolinking and native modules
-      
+          npm install  # Explicitly using npm instead of yarn
+      - name: Reset Metro Bundler Cache
+        run: npx react-native start --reset-cache & sleep 5; exit 0
 
       - name: Build APK
         run: |
           cd android
           chmod +x gradlew
           ./gradlew clean
-          ./gradlew assembleRelease --stacktrace
-
+          ./gradlew assembleDebug --stacktrace
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
