@@ -59,13 +59,7 @@ jobs:
           rm -rf android/app/build/generated
 
       # FIX: Ensure codegen files are generated for autolinking and native modules
-      - name: Generate Codegen Files
-        run: |
-          npx react-native generate-codegen
-          npx react-native autolink
-
-      - name: Reset Metro Bundler Cache
-        run: npx react-native start --reset-cache & sleep 5; exit 0
+      
 
       - name: Build APK
         run: |
