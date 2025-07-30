@@ -24,7 +24,7 @@ jobs:
         run: npm install
 
       - name: Run React Native Codegen
-        run: npx react-native-codegen
+        run: npx react-native buildNativeModule:android
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
