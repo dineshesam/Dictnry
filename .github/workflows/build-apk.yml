@@ -3,7 +3,7 @@ name: Build APK (On Push)
 on:
   push:
     branches:
-      - main  # Runs when pushing to the main branch
+      - dev_on_github  # Runs when pushing to the dev branch
   workflow_dispatch:  # Allows manual trigger from GitHub Actions UI
 
 jobs:
