@@ -53,6 +53,8 @@ jobs:
           npm install  # Explicitly using npm instead of yarn
       - name: Reset Metro Bundler Cache
         run: npx react-native start --reset-cache & sleep 5; exit 0
+      - name: Js Bundling
+        run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
 
       - name: Build APK
         run: |
