@@ -36,6 +36,11 @@ export const AppProvider = ({ children }) => {
     setHistory(updated);
     await AsyncStorage.setItem('history', JSON.stringify(updated));
   };
+  const clearHistory = async () => {
+  setHistory([]);
+  await AsyncStorage.removeItem('history');
+};
+
 
   const addToBookmarks = async (word) => {
     const updated = [word, ...bookmarks.filter(w => w.word !== word.word)];
@@ -50,7 +55,7 @@ export const AppProvider = ({ children }) => {
 
 
   return (
-    <AppContext.Provider value={{ history, bookmarks, addToHistory, addToBookmarks, dictionary, wordOfTheDay ,removeBookmark }}>
+    <AppContext.Provider value={{ history, bookmarks, addToHistory, addToBookmarks, dictionary, wordOfTheDay ,removeBookmark, clearHistory }}>
       {children}
     </AppContext.Provider>
   );

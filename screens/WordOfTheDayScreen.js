@@ -1,6 +1,6 @@
 
 import React, { useContext, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet,ScrollView } from 'react-native';
 import { AppContext } from '../context/AppContext';
 
 const WordOfTheDayScreen = () => {
@@ -18,8 +18,8 @@ const WordOfTheDayScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>📅 Word of the Day</Text>
+    <ScrollView style={styles.container}>
+      <Text style={styles.title}>📅🎁🎉</Text>
       {wordOfTheDay && (
         <>
           <Text style={styles.word}>{wordOfTheDay.word}</Text>
@@ -29,17 +29,17 @@ const WordOfTheDayScreen = () => {
       <TouchableOpacity style={styles.button} onPress={refreshWord}>
         <Text style={styles.buttonText}>🔄 Refresh</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, justifyContent: 'center', alignItems: 'center' },
-  title: { fontSize: 18, fontWeight: 'bold', marginBottom: 10 },
-  word: { fontSize: 24, fontWeight: 'bold', color: '#333', marginBottom: 5 },
+  container: { flex: 1, padding: 20},
+  title: { fontSize: 18, fontWeight: 'bold', marginBottom: 10,marginLeft:150 },
+  word: { fontSize: 24, fontWeight: 'bold', color: '#333', marginBottom: 5,marginLeft:120 },
   definition: { fontSize: 16, color: '#555', textAlign: 'center', marginBottom: 20 },
-  button: { padding: 10, backgroundColor: 'skyblue', borderRadius: 8 },
-  buttonText: { fontSize: 16, fontWeight: 'bold' },
+  button: { padding: 10, backgroundColor: 'black', borderRadius: 8,marginBottom:75,width:120,marginLeft:140},
+  buttonText: { fontSize: 16, fontWeight: 'bold', color:"#fff" },
 });
 
 export default WordOfTheDayScreen;

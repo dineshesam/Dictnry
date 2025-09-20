@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { AppContext } from '../context/AppContext';
 import Tts from 'react-native-tts';
+import { styles } from '../Styles/styles';
 
 
 const WordMeaningScreen = ({ route }) => {
@@ -67,7 +68,7 @@ const speakDef = () => {
                     style={{
                         width: 24,
                         height: 24,
-                        marginLeft: 160,
+                        marginLeft: 180,
 
                     }}
                 />
@@ -79,13 +80,13 @@ const speakDef = () => {
     );
 };
 
-const styles = StyleSheet.create({
-    container: { flex: 1, padding: 20,paddingBottom:150 },
-    word: { fontSize: 28, fontWeight: 'bold', marginBottom: 10 },
-    definition: { fontSize: 18, marginBottom: 20 },
-    iconButton: { padding: 8 },
-    buttonText: { fontSize: 16, fontWeight: 'bold' },
-    button: { padding: 10, backgroundColor: 'skyblue', borderRadius: 8,width:105,alignContent:'center',marginLeft:120 },
-});
+// const styles = StyleSheet.create({
+//     container: { flex: 1, padding: 20,paddingBottom:150 },
+//     word: { fontSize: 28, fontWeight: 'bold', marginBottom: 10 },
+//     definition: { fontSize: 18, marginBottom: 20 },
+//     iconButton: { padding: 8 },
+//     buttonText: { fontSize: 16, fontWeight: 'bold' },
+//     button: { padding: 10, backgroundColor: 'skyblue', borderRadius: 8,width:105,alignContent:'center',marginLeft:120 },
+// });
 
 export default WordMeaningScreen;

@@ -16,8 +16,34 @@ const Tab = createBottomTabNavigator();
 // Stack for Home (to allow navigation to WordMeaningScreen)
 const HomeStack = () => (
   <Stack.Navigator>
-    <Stack.Screen name="Home" component={HomeScreen} />
-    <Stack.Screen name="WordMeaning" component={WordMeaningScreen} />
+    <Stack.Screen name="Home"
+            component={HomeScreen}
+            options={{
+              headerStyle: {
+                backgroundColor: '#fff',
+              },
+              headerTitleStyle: {
+                fontSize: 24,
+                fontWeight: '700',
+                color: 'black',
+              },
+              headerTintColor: '#FAFAFA',
+              headerTitleAlign: 'center',
+            }} />
+    <Stack.Screen name="Word Meaning"
+            component={WordMeaningScreen}
+            options={{
+              headerStyle: {
+                backgroundColor: '#fff',
+              },
+              headerTitleStyle: {
+                fontSize: 24,
+                fontWeight: '700',
+                color: 'black',
+              },
+              headerTintColor: '#FAFAFA',
+              headerTitleAlign: 'center',
+            }} />
   </Stack.Navigator>
 );
 
@@ -25,42 +51,81 @@ const App = () => {
   return (
     <AppProvider>
       <NavigationContainer>
-        <Tab.Navigator  initialRouteName="HomeTab"
-                screenOptions={({ route }) => ({
-                  tabBarIcon: ({ focused }) => {
-                    let iconSource;
-        
-                    if (route.name === 'HomeTab') {
-                     iconSource = require('./assets/icons/home.png');
-        
-                    } else if (route.name === 'Word of the Day') {
-                      iconSource = require('./assets/icons/gift.png');
-                    }
-                     else if (route.name === 'Bookmarks') {
-                      iconSource = require('./assets/icons/bookmark.png');
-                    }
-                     else if (route.name === 'History') {
-                      iconSource = require('./assets/icons/history.png');
-                    }
-        
-                    return (
-                      <Image
-                        source={iconSource}
-                        style={{
-                          width: 24,
-                          height: 24,
-                          tintColor: focused ? 'black' : 'gray',
-                        }}
-                      />
-                    );
-                  },
-                  tabBarActiveTintColor: 'black',
-                  tabBarInactiveTintColor: 'gray',
-                })}>
-          <Tab.Screen name="HomeTab" component={HomeStack} options={{ headerShown: false  }} />
-          <Tab.Screen name="Bookmarks" component={BookmarkScreen} />
-          <Tab.Screen name="History" component={HistoryScreen} />
-          <Tab.Screen name="Word of the Day" component={WordOfTheDayScreen} />
+        <Tab.Navigator initialRouteName="Home"
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused }) => {
+              let iconSource;
+
+              if (route.name === 'Home') {
+                iconSource = require('./assets/icons/home.png');
+
+              } else if (route.name === 'Word of the Day') {
+                iconSource = require('./assets/icons/gift.png');
+              }
+              else if (route.name === 'Bookmarks') {
+                iconSource = require('./assets/icons/bookmark.png');
+              }
+              else if (route.name === 'History') {
+                iconSource = require('./assets/icons/history.png');
+              }
+
+              return (
+                <Image
+                  source={iconSource}
+                  style={{
+                    width: 34,
+                    height: 34,
+                    tintColor: focused ? 'black' : 'gray',
+                  }}
+                />
+              );
+            },
+            tabBarActiveTintColor: 'black',
+            tabBarInactiveTintColor: 'gray',
+          })}>
+          <Tab.Screen name="Home" component={HomeStack} options={{ headerShown: false }} />
+          <Tab.Screen name="Bookmarks"
+            component={BookmarkScreen}
+            options={{
+              headerStyle: {
+                backgroundColor: '#fff',
+              },
+              headerTitleStyle: {
+                fontSize: 24,
+                fontWeight: '700',
+                color: 'black',
+              },
+              headerTintColor: '#FAFAFA',
+              headerTitleAlign: 'center',
+            }} />
+          <Tab.Screen name="History"
+  component={HistoryScreen}
+  options={{
+    headerStyle: {
+      backgroundColor: '#fff',
+    },
+    headerTitleStyle: {
+      fontSize: 24,
+      fontWeight: '700',
+      color: 'black',
+    },
+    headerTintColor: '#FAFAFA',
+    headerTitleAlign: 'center',
+  }} />
+          <Tab.Screen  name="Word of the Day"
+  component={WordOfTheDayScreen}
+  options={{
+    headerStyle: {
+      backgroundColor: '#fff',
+    },
+    headerTitleStyle: {
+      fontSize: 24,
+      fontWeight: '700',
+      color: 'black',
+    },
+    headerTintColor: '#FAFAFA',
+    headerTitleAlign: 'center',
+  }} />
         </Tab.Navigator>
       </NavigationContainer>
     </AppProvider>

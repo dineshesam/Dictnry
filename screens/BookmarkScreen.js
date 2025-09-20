@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { AppContext } from '../context/AppContext';
+import { styles } from '../Styles/styles';
 
 const BookmarkScreen = () => {
   const { bookmarks, removeBookmark } = useContext(AppContext);
@@ -34,7 +35,7 @@ const BookmarkScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Bookmarked Words</Text>
+      {/* <Text style={styles.title}>Bookmarked Words</Text> */}
 
       {selectionMode && (
         <View style={styles.actionBar}>
@@ -77,49 +78,49 @@ const BookmarkScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20 },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 10 },
-  item: {
-    marginBottom: 15,
-    padding: 10,
-    borderRadius: 8,
-    backgroundColor: 'skyblue',
-  },
-  selectedItem: {
-    backgroundColor: '#d0ebff',
-  },
-  wordRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  word: { fontSize: 18, fontWeight: 'bold' },
-  definition: { fontSize: 16, marginTop: 4 },
-  checkbox: { fontSize: 18, color: '#333' },
-  actionBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 10,
-  },
-  deleteButton: {
-    backgroundColor: 'red',
-    padding: 10,
-    borderRadius: 5,
-  },
-  deleteText: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  cancelButton: {
-    backgroundColor: '#aaa',
-    padding: 10,
-    borderRadius: 5,
-  },
-  cancelText: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: { flex: 1, padding: 20 },
+//   title: { fontSize: 24, fontWeight: 'bold', marginBottom: 10 },
+//   item: {
+//     marginBottom: 15,
+//     padding: 10,
+//     borderRadius: 8,
+//     backgroundColor: 'skyblue',
+//   },
+//   selectedItem: {
+//     backgroundColor: '#d0ebff',
+//   },
+//   wordRow: {
+//     flexDirection: 'row',
+//     justifyContent: 'space-between',
+//     alignItems: 'center',
+//   },
+//   word: { fontSize: 18, fontWeight: 'bold' },
+//   definition: { fontSize: 16, marginTop: 4 },
+//   checkbox: { fontSize: 18, color: '#333' },
+//   actionBar: {
+//     flexDirection: 'row',
+//     justifyContent: 'space-between',
+//     marginBottom: 10,
+//   },
+//   deleteButton: {
+//     backgroundColor: 'red',
+//     padding: 10,
+//     borderRadius: 5,
+//   },
+//   deleteText: {
+//     color: 'white',
+//     fontWeight: 'bold',
+//   },
+//   cancelButton: {
+//     backgroundColor: '#aaa',
+//     padding: 10,
+//     borderRadius: 5,
+//   },
+//   cancelText: {
+//     color: 'white',
+//     fontWeight: 'bold',
+//   },
+// });
 
 export default BookmarkScreen;

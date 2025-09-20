@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, FlatList, Text, TouchableOpacity, StyleSheet, ImageBackground, Image } from 'react-native';
 import dictionaryData from '../assets/dictionary.json';
+import WordOfTheDayFloating from '../Components/WordOfTheDayFloating';
 
 const HomeScreen = ({ navigation }) => {
     const [query, setQuery] = useState('');
@@ -11,7 +12,7 @@ const HomeScreen = ({ navigation }) => {
         const entries = Object.entries(dictionaryData);
         const filtered = entries
             .filter(([word]) => word.toLowerCase().startsWith(text.toLowerCase()))
-            .slice(0, 10)
+            .slice(0, 5)
             .map(([word, definition]) => ({ word, definition }));
         setResults(filtered);
     };
@@ -23,8 +24,15 @@ const HomeScreen = ({ navigation }) => {
             <ImageBackground
                 style={styles.backgroundImage}
                 resizeMode="cover"
-                source={require("../assets/bg.jpg")}
+                source={require("../assets/dictnary.jpg")}
             >
+                {/* <Text style={{
+                    color: "#fff", marginLeft: 185, fontSize: 20,
+                    fontWeight: '700',
+                    marginBottom: 2,
+                    marginTop:7
+                }}>Home</Text> */}
+
                 <View style={styles.searchBar}>
                     <Image
                         source={require('../assets/icons/search.png')}
@@ -32,7 +40,7 @@ const HomeScreen = ({ navigation }) => {
                     />
                     <TextInput
                         style={styles.input}
-                        placeholder="Search a word..."
+                        placeholder="Search a Word...!"
                         value={query}
                         onChangeText={handleSearch}
                     />
@@ -53,9 +61,9 @@ const HomeScreen = ({ navigation }) => {
                 <FlatList
                     data={results}
                     keyExtractor={(item) => item.word}
-                    contentContainerStyle={{ paddingHorizontal: 20 ,backgroundColor: 'rgba(0, 0, 0, 0.2)',borderRadius:8}} 
+                    contentContainerStyle={{ paddingHorizontal: 20, backgroundColor: 'rgba(0, 0, 0, 0.3)', borderRadius: 8,marginLeft:40 }}
                     renderItem={({ item }) => (
-                        <TouchableOpacity onPress={() => navigation.navigate('WordMeaning', { word: item })}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Word Meaning', { word: item })}>
                             <Text style={styles.item}>{item.word}</Text>
                         </TouchableOpacity>
                     )}
@@ -72,6 +80,8 @@ const HomeScreen = ({ navigation }) => {
                     <Text>WoD</Text>
                 </TouchableOpacity>
             </View> */}
+
+            {/* <WordOfTheDayFloating /> */}
         </View>
     );
 };
@@ -86,17 +96,19 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%",
         justifyContent: "center",
-        alignItems:"flex-start",
-        padding:0
+        alignItems: "flex-start",
+        padding: 0
     },
     searchBar: {
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: 'grey', // solid red background
-        borderRadius: 8,
+        borderRadius: 10,
         paddingHorizontal: 10,
         height: 44,
         marginBottom: 20,
+        marginTop: 10,
+        margin:10
     },
 
     icon: {
