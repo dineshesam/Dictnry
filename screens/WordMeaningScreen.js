@@ -1,14 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState} from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { AppContext } from '../context/AppContext';
 import Tts from 'react-native-tts';
-import { styles } from '../Styles/styles';
+import { getStyles } from '../Styles/styles';
+
+
 
 
 const WordMeaningScreen = ({ route }) => {
     const { word } = route.params;
-    const { addToHistory, addToBookmarks } = useContext(AppContext);
+    const { addToHistory, addToBookmarks, theme , fontSize } = useContext(AppContext);
     const [isSpeaking, setIsSpeaking] = useState(false);
+    const styles = getStyles(theme, fontSize);
 
     useEffect(() => {
         addToHistory(word);
@@ -27,6 +30,7 @@ useEffect(() => {
     Tts.removeAllListeners('tts-start');
     Tts.removeAllListeners('tts-finish');
     Tts.removeAllListeners('tts-cancel');
+     Tts.stop();
   };
 }, []);
 

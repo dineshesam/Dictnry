@@ -5,6 +5,7 @@ import { AppContext } from '../context/AppContext';
 
 const WordOfTheDayScreen = () => {
   const { dictionary } = useContext(AppContext);
+  const { theme, fontSize} = useContext(AppContext);
   const [wordOfTheDay, setWordOfTheDay] = useState(() => {
     const today = new Date();
     const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
@@ -18,16 +19,16 @@ const WordOfTheDayScreen = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={[styles.container, { backgroundColor: theme === 'dark' ? '#222' : '#fff' }]}>
       <Text style={styles.title}>📅🎁🎉</Text>
       {wordOfTheDay && (
         <>
-          <Text style={styles.word}>{wordOfTheDay.word}</Text>
-          <Text style={styles.definition}>{wordOfTheDay.definition}</Text>
+          <Text style={[styles.word,  {color: theme === 'dark' ? '#fff' : '#222', fontSize: Math.min(fontSize, 28)}]}>{wordOfTheDay.word}</Text>
+          <Text style={[styles.definition,  {color: theme === 'dark' ? '#fff' : '#222',fontSize: Math.min(fontSize, 24)}]}>{wordOfTheDay.definition}</Text>
         </>
       )}
-      <TouchableOpacity style={styles.button} onPress={refreshWord}>
-        <Text style={styles.buttonText}>🔄 Refresh</Text>
+      <TouchableOpacity style={[styles.button,{backgroundColor: theme === 'dark' ? '#444' : 'black'}]} onPress={refreshWord}>
+        <Text style={[styles.buttonText , {color: theme === 'dark' ? '#fff' : '#222'}]}>🔄 Refresh</Text>
       </TouchableOpacity>
     </ScrollView>
   );

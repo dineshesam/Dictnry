@@ -1,41 +1,43 @@
-
 import { StyleSheet } from 'react-native';
 
-export const styles = StyleSheet.create({
+export const getStyles = (theme = 'light', fontSize = 16) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: theme === 'dark' ? '#222' : '#F5F5F5',
     padding: 20,
   },
   title: {
-    fontSize: 24,
+    fontSize: Math.min(fontSize + 8, 24),
     fontWeight: '700',
-    color: '#333',
+    color: theme === 'dark' ? '#fff' : '#333',
     marginBottom: 10,
   },
   word: {
-    fontSize: 20,
+    fontSize: fontSize+4,
     fontWeight: '700',
-    color: '#222',
+    color: theme === 'dark' ? '#fff' : '#222',
     marginBottom: 6,
   },
   definition: {
-    fontSize: 16,
-    fontWeight: '400',
-    color: '#444',
-    lineHeight: 22,
-    marginBottom: 10,
+
+  fontSize: fontSize,
+  fontWeight: '400',
+  color: theme === 'dark' ? '#ccc' : '#444',
+  lineHeight: Math.max(fontSize * 1.6, 24),
+  marginBottom: 10,
+  flexWrap: 'wrap',
+
   },
   example: {
     fontSize: 14,
     fontStyle: 'italic',
-    color: '#666',
+    color: theme === 'dark' ? '#aaa' : '#666',
     marginTop: 8,
   },
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#DDD',
+    backgroundColor: theme === 'dark' ? '#444' : '#DDD',
     borderRadius: 8,
     paddingHorizontal: 10,
     height: 44,
@@ -43,23 +45,22 @@ export const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    color: '#333',
+    color: theme === 'dark' ? '#fff' : '#333',
     fontSize: 16,
     paddingHorizontal: 10,
   },
   icon: {
     width: 24,
     height: 24,
-    tintColor: '#333',
+    tintColor: theme === 'dark' ? '#fff' : '#333',
     marginHorizontal: 5,
   },
   item: {
     fontSize: 18,
     paddingVertical: 10,
-    color: '#333',
+    color: theme === 'dark' ? '#fff' : '#333',
   },
   card: {
-    
     borderRadius: 12,
     padding: 16,
     marginBottom: 16,
@@ -68,10 +69,11 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 2,
+    backgroundColor: theme === 'dark' ? '#333' : '#fff',
   },
   button: {
     padding: 10,
-    backgroundColor: 'black',
+    backgroundColor: theme === 'dark' ? '#444' : 'black',
     borderRadius: 8,
     alignItems: 'center',
     marginTop: 10,
@@ -85,7 +87,7 @@ export const styles = StyleSheet.create({
     color: '#FFF',
   },
   selectedItem: {
-    backgroundColor: '#d0ebff',
+    backgroundColor: theme === 'dark' ? '#2b7aaf' : '#d0ebff',
     borderRadius:10,
     marginTop:10,
     padding:10
@@ -97,7 +99,7 @@ export const styles = StyleSheet.create({
   },
   checkbox: {
     fontSize: 18,
-    color: '#333',
+    color: theme === 'dark' ? '#fff' : '#333',
   },
   actionBar: {
     flexDirection: 'row',
@@ -105,13 +107,9 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   deleteButton: {
-    backgroundColor: 'black',
+    backgroundColor: theme === 'dark' ? '#444' : 'black',
     padding: 10,
     borderRadius: 10,
-    
-   
-    
-
   },
   deleteText: {
     color: 'white',

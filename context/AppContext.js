@@ -5,23 +5,53 @@ import dictionaryData from '../assets/dictionary.json';
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
+  // Dictionary, history, bookmarks
   const [history, setHistory] = useState([]);
   const [bookmarks, setBookmarks] = useState([]);
   const [dictionary, setDictionary] = useState([]);
   const [wordOfTheDay, setWordOfTheDay] = useState(null);
 
+  // Settings
+  const [theme, setTheme] = useState('light');
+  const [fontSize, setFontSize] = useState(16);
+  const [useOnline, setUseOnline] = useState(false);
+
+  // Load data and settings from AsyncStorage
   useEffect(() => {
     const loadData = async () => {
       const storedHistory = await AsyncStorage.getItem('history');
       const storedBookmarks = await AsyncStorage.getItem('bookmarks');
+      const storedTheme = await AsyncStorage.getItem('theme');
+      const storedFontSize = await AsyncStorage.getItem('fontSize');
+      const storedUseOnline = await AsyncStorage.getItem('useOnline');
+
       if (storedHistory) setHistory(JSON.parse(storedHistory));
       if (storedBookmarks) setBookmarks(JSON.parse(storedBookmarks));
-      setDictionary(Object.entries(dictionaryData).map(([word, definition]) => ({ word, definition })));
-    };
+      if (storedTheme) setTheme(storedTheme);
+      if (storedFontSize) setFontSize(Number(storedFontSize));
+      if (storedUseOnline) setUseOnline(storedUseOnline === 'true');
 
+      setDictionary(
+        Object.entries(dictionaryData).map(([word, definition]) => ({ word, definition }))
+      );
+    };
     loadData();
   }, []);
 
+  // Persist settings
+  useEffect(() => {
+    AsyncStorage.setItem('theme', theme);
+  }, [theme]);
+
+  useEffect(() => {
+    AsyncStorage.setItem('fontSize', fontSize.toString());
+  }, [fontSize]);
+
+  useEffect(() => {
+    AsyncStorage.setItem('useOnline', useOnline.toString());
+  }, [useOnline]);
+
+  // Word of the Day logic
   useEffect(() => {
     if (dictionary.length > 0) {
       const today = new Date();
@@ -31,31 +61,40 @@ export const AppProvider = ({ children }) => {
     }
   }, [dictionary]);
 
+  // History/bookmark logic
   const addToHistory = async (word) => {
     const updated = [word, ...history.filter(w => w.word !== word.word)];
     setHistory(updated);
     await AsyncStorage.setItem('history', JSON.stringify(updated));
   };
-  const clearHistory = async () => {
-  setHistory([]);
-  await AsyncStorage.removeItem('history');
-};
 
+  const clearHistory = async () => {
+    setHistory([]);
+    await AsyncStorage.removeItem('history');
+  };
 
   const addToBookmarks = async (word) => {
     const updated = [word, ...bookmarks.filter(w => w.word !== word.word)];
     setBookmarks(updated);
     await AsyncStorage.setItem('bookmarks', JSON.stringify(updated));
   };
-  
 
-  const removeBookmark = (wordToRemove) => {
-    setBookmarks((prev) => prev.filter((item) => item.word !== wordToRemove));
+  const removeBookmark = async (wordToRemove) => {
+    const updated = bookmarks.filter(item => item.word !== wordToRemove);
+    setBookmarks(updated);
+    await AsyncStorage.setItem('bookmarks', JSON.stringify(updated));
   };
 
-
   return (
-    <AppContext.Provider value={{ history, bookmarks, addToHistory, addToBookmarks, dictionary, wordOfTheDay ,removeBookmark, clearHistory }}>
+    <AppContext.Provider
+      value={{
+        history, bookmarks, addToHistory, addToBookmarks, dictionary, wordOfTheDay,
+        removeBookmark, clearHistory,
+        theme, setTheme,
+        fontSize, setFontSize,
+        useOnline, setUseOnline,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

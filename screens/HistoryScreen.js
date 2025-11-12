@@ -1,14 +1,19 @@
 import React, { useContext } from 'react';
 import { View, Text, FlatList, StyleSheet ,TouchableOpacity,Alert} from 'react-native';
 import { AppContext } from '../context/AppContext';
-import { styles } from '../Styles/styles';
+// import { styles } from '../Styles/styles';
+import { getStyles } from '../Styles/styles';
 
 const HistoryScreen = () => {
   const { history , clearHistory} = useContext(AppContext);
+  const { theme, fontSize } = useContext(AppContext);
+    
+    const styles = getStyles(theme, fontSize);
 
   return (
     <View style={styles.container}>
-      <View style ={{flexDirection: 'row', gap: 75}}>
+      
+      <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
       <Text style={styles.title}>Recent Searches :</Text>
       {history.length > 0 && (
   <TouchableOpacity   onPress={() => {

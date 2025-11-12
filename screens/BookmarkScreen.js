@@ -7,12 +7,18 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { AppContext } from '../context/AppContext';
-import { styles } from '../Styles/styles';
+import { getStyles } from '../Styles/styles';
 
-const BookmarkScreen = () => {
+
+const BookmarkScreen = ({navigation}) => {
   const { bookmarks, removeBookmark } = useContext(AppContext);
   const [selectedWords, setSelectedWords] = useState([]);
   const [selectionMode, setSelectionMode] = useState(false);
+
+  const { theme , fontSize} = useContext(AppContext);
+  // const styles = getStyles(theme);
+   const styles = getStyles(theme, fontSize);
+
 
   const toggleSelection = (word) => {
     if (selectedWords.includes(word)) {
@@ -63,14 +69,18 @@ const BookmarkScreen = () => {
             ]}
           >
             <View style={styles.wordRow}>
-              <Text style={styles.word}>{item.word}</Text>
+              {/* <Text style={styles.word}>{item.word}</Text> */}
+              <TouchableOpacity
+                onPress={() => navigation.navigate('bmws', { wordTitle: item.word })}
+              ><Text  style={styles.word}>{item.word}</Text>
+              </TouchableOpacity>
               {selectionMode && (
                 <Text style={styles.checkbox}>
                   {selectedWords.includes(item.word) ? '☑' : '☐'}
                 </Text>
               )}
             </View>
-            <Text style={styles.definition}>{item.definition}</Text>
+            {/* <Text style={styles.definition}>{item.definition}</Text> */}
           </TouchableOpacity>
         )}
       />
