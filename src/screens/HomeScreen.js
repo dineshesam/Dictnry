@@ -4,11 +4,13 @@ import axios from 'axios';
 import dictionaryData from '../assets/dictionary.json';
 import { AppContext } from '../context/AppContext';
 
+
+
 const HomeScreen = ({ navigation }) => {
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { theme, fontSize, useOnline } = useContext(AppContext);
+  const { theme, fontSize, useOnline,  currentTheme } = useContext(AppContext);
 
   // Fetch suggestions from Datamuse API
   const fetchSuggestions = async (text) => {
@@ -66,16 +68,18 @@ const HomeScreen = ({ navigation }) => {
     }
   };
 
+   const { colors } = currentTheme;
   return (
-    <View style={[styles.container, { backgroundColor: theme === 'dark' ? '#222' : '#fff' }]}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       
 
       <ImageBackground
         style={styles.backgroundImage}
         resizeMode="cover"
-        source={require("../assets/dictnarynobg.png")}
+        // source={require("../assets/images/dictnarynobg.png")}
+        source={require("../assets/images/dictnarynobg.png")}
       >
-        <View style={[styles.searchBar, { backgroundColor: theme === 'dark' ? '#444' : 'grey' }]}>
+        <View style={[styles.searchBar, { backgroundColor: colors.card}]}>
           <Image
             source={require('../assets/icons/search.png')}
             style={[styles.icon, { tintColor: '#fff' }]}

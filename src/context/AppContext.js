@@ -1,5 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useColorScheme } from 'react-native';
+import { DefaultTheme, DarkTheme } from '@react-navigation/native';
 import dictionaryData from '../assets/dictionary.json';
 
 export const AppContext = createContext();
@@ -12,7 +14,7 @@ export const AppProvider = ({ children }) => {
   const [wordOfTheDay, setWordOfTheDay] = useState(null);
 
   // Settings
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('light'); // 'light', 'dark', or 'system'
   const [fontSize, setFontSize] = useState(16);
   const [useOnline, setUseOnline] = useState(false);
 
@@ -85,6 +87,34 @@ export const AppProvider = ({ children }) => {
     await AsyncStorage.setItem('bookmarks', JSON.stringify(updated));
   };
 
+  // ✅ Theme integration
+  const systemTheme = useColorScheme(); // 'light' or 'dark'
+  const activeTheme = theme === 'system' ? systemTheme : theme;
+
+  const CustomLightTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: '#FFFFFF',
+      text: '#111111',
+      card: '#F2F2F7',
+      border: '#E6E6E6',
+    },
+  };
+
+  const CustomDarkTheme = {
+    ...DarkTheme,
+    colors: {
+      ...DarkTheme.colors,
+      background: '#000000',
+      text: '#FFFFFF',
+      card: '#1C1C1E',
+      border: '#333333',
+    },
+  };
+
+  const currentTheme = activeTheme === 'dark' ? CustomDarkTheme : CustomLightTheme;
+
   return (
     <AppContext.Provider
       value={{
@@ -93,6 +123,7 @@ export const AppProvider = ({ children }) => {
         theme, setTheme,
         fontSize, setFontSize,
         useOnline, setUseOnline,
+        currentTheme // ✅ Added for NavigationContainer
       }}
     >
       {children}
