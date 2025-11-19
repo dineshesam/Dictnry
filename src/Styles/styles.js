@@ -90,7 +90,8 @@ export const getStyles = (theme = 'light', fontSize = 16) => StyleSheet.create({
     backgroundColor: theme === 'dark' ? '#2b7aaf' : '#d0ebff',
     borderRadius:10,
     marginTop:10,
-    padding:10
+    padding:20
+    ,marginRight: 10
   },
   wordRow: {
     flexDirection: 'row',

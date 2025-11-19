@@ -1,0 +1,21 @@
+{
+  "Home": "होम",
+  "bookmarks": "बुकमार्क्स",
+  "history": "खोज इतिहास",
+  "settings": "सेटिंग्स",
+  "addBookmark": "बुकमार्क में जोड़ें",
+  "wordOfTheDay": "आज का शब्द",
+  "Refresh": "रिफ्रेश",
+  "Light": "लाइट",
+  "Dark": "डार्क",
+  "system": "सिस्टम",
+  "fontsize": "फ़ॉन्ट आकार",
+  "chooseLanguage": "भाषा चुनें",
+  "deleteSelected": "चयनित हटाएं",
+  "cancel": "रद्द करें",
+  "recentSearches": "हाल की खोजें",
+  "clearHistory": "इतिहास साफ़ करें",
+  "wordMeaning": "शब्द का अर्थ",
+  "enableOnlineSearch": "ऑनलाइन खोज सक्षम करें",
+  "searchWord": "शब्द खोजें....!"
+}

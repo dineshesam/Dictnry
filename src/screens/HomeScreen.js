@@ -3,6 +3,7 @@ import { View, TextInput, FlatList, Text, TouchableOpacity, StyleSheet, ImageBac
 import axios from 'axios';
 import dictionaryData from '../assets/dictionary.json';
 import { AppContext } from '../context/AppContext';
+import SearchBar from '../Components/SearchBar';
 
 
 
@@ -68,7 +69,9 @@ const HomeScreen = ({ navigation }) => {
     }
   };
 
+  
    const { colors } = currentTheme;
+  const styles = createStyles(colors);
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       
@@ -79,27 +82,17 @@ const HomeScreen = ({ navigation }) => {
         // source={require("../assets/images/dictnarynobg.png")}
         source={require("../assets/images/dictnarynobg.png")}
       >
-        <View style={[styles.searchBar, { backgroundColor: colors.card}]}>
-          <Image
-            source={require('../assets/icons/search.png')}
-            style={[styles.icon, { tintColor: '#fff' }]}
-          />
-          <TextInput
-            style={[styles.input, { color: '#fff', fontSize: Math.min(fontSize, 24) }]}
-            placeholder="Search a Word...!"
-            placeholderTextColor={theme === 'dark' ? '#bbb' : '#eee'}
-            value={query}
-            onChangeText={handleChange}
-          />
-          {query.length > 0 && (
-            <TouchableOpacity onPress={() => { setQuery(''); setSuggestions([]); }}>
-              <Image
-                source={require('../assets/icons/close.png')}
-                style={[styles.icon, { tintColor: '#fff' }]}
-              />
-            </TouchableOpacity>
-          )}
-        </View>
+        <SearchBar
+  value={query}
+  onChangeText={handleChange}
+  onClear={() => { setQuery(''); setSuggestions([]); }}
+  placeholder="Search a Word..."
+  iconColor={colors.tint}
+  backgroundColor={colors.card}
+  textColor={theme === 'dark' ? '#fff' : '#000'}
+  fontSize={Math.min(fontSize, 24)}
+/>
+
         {loading ? (
           <ActivityIndicator size="large" color={theme === 'dark' ? '#fff' : '#000'} style={{ marginTop: 20 , marginLeft: 80 }} />
         ) : (
@@ -134,7 +127,7 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
+const createStyles = (colors) =>  StyleSheet.create({
   container: { flex: 1 },
   backgroundImage: {
     flex: 1,

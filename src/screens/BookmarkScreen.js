@@ -8,16 +8,22 @@ import {
 } from 'react-native';
 import { AppContext } from '../context/AppContext';
 import { getStyles } from '../Styles/styles';
+import Toast from 'react-native-toast-message';
+import NoteItem from '../Components/WordItem';
+import WordCard from '../Components/WordItem';
+import { useTranslation } from 'react-i18next';
+import CustomButton from '../Components/CustomButton';
 
 
-const BookmarkScreen = ({navigation}) => {
-  const { bookmarks, removeBookmark } = useContext(AppContext);
+const BookmarkScreen = ({ navigation }) => {
+  const { bookmarks, removeBookmark ,currentTheme} = useContext(AppContext);
   const [selectedWords, setSelectedWords] = useState([]);
   const [selectionMode, setSelectionMode] = useState(false);
+  const { t } = useTranslation();
 
-  const { theme , fontSize} = useContext(AppContext);
+  const { theme, fontSize } = useContext(AppContext);
   // const styles = getStyles(theme);
-   const styles = getStyles(theme, fontSize);
+  const styles = getStyles(theme, fontSize);
 
 
   const toggleSelection = (word) => {
@@ -45,45 +51,53 @@ const BookmarkScreen = ({navigation}) => {
 
       {selectionMode && (
         <View style={styles.actionBar}>
-          <TouchableOpacity onPress={handleDeleteSelected} style={styles.deleteButton}>
-            <Text style={styles.deleteText}>Delete Selected</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={cancelSelection} style={styles.cancelButton}>
-            <Text style={styles.cancelText}>Cancel</Text>
-          </TouchableOpacity>
+         <CustomButton
+  label={t('deleteSelected')}
+  onPress={() => {
+    handleDeleteSelected();
+    Toast.show({
+      type: 'success',
+      text1: 'Deleted Successfully',
+      text2: `${selectedWords.length} items removed.`,
+      position: 'top',
+      topOffset: 120,
+    });
+  }}
+  colors={currentTheme.colors}
+ 
+/>
+
+<CustomButton
+  label={t('cancel')}
+  onPress={cancelSelection}
+  colors={currentTheme.colors}
+  // or '#ff6600' for orange
+/>
         </View>
       )}
 
       <FlatList
-        data={bookmarks}
-        keyExtractor={(item) => item.word}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onLongPress={() => setSelectionMode(true)}
-            onPress={() => {
-              if (selectionMode) toggleSelection(item.word);
-            }}
-            style={[
-              styles.item,
-              selectedWords.includes(item.word) && styles.selectedItem,
-            ]}
-          >
-            <View style={styles.wordRow}>
-              {/* <Text style={styles.word}>{item.word}</Text> */}
-              <TouchableOpacity
-                onPress={() => navigation.navigate('bmws', { wordTitle: item.word })}
-              ><Text  style={styles.word}>{item.word}</Text>
-              </TouchableOpacity>
-              {selectionMode && (
-                <Text style={styles.checkbox}>
-                  {selectedWords.includes(item.word) ? '☑' : '☐'}
-                </Text>
-              )}
-            </View>
-            {/* <Text style={styles.definition}>{item.definition}</Text> */}
-          </TouchableOpacity>
-        )}
-      />
+  data={bookmarks}
+  keyExtractor={(item) => item.word}
+  renderItem={({ item }) => (
+    <WordCard
+      word={item.word}
+      definition={item.definition}
+      isSelected={selectedWords.includes(item.word)}
+      onPress={(word) => {
+        if (selectionMode) {
+          toggleSelection(word);
+        } else {
+          navigation.navigate('bmws', { wordTitle: word });
+        }
+      }}
+      onLongPress={(word) => {
+        setSelectionMode(true);
+        toggleSelection(word); // Select the long-pressed item immediately
+      }}
+    />
+  )}
+/>
     </View>
   );
 };

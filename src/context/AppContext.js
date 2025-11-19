@@ -97,8 +97,13 @@ export const AppProvider = ({ children }) => {
       ...DefaultTheme.colors,
       background: '#FFFFFF',
       text: '#111111',
-      card: '#F2F2F7',
+      card: '#ebebf4ff',
       border: '#E6E6E6',
+      tint: '#49575aff',
+      tabBg:'#d7e2e8ff',
+      buttonBg:'black' ,
+      buttonText: '#FFFFFF' // Off-white / book page color
+
     },
   };
 
@@ -108,8 +113,12 @@ export const AppProvider = ({ children }) => {
       ...DarkTheme.colors,
       background: '#000000',
       text: '#FFFFFF',
-      card: '#1C1C1E',
+      card: '#4a4a4eff',
       border: '#333333',
+      tint: '#c2c6c7ff',
+       tabBg:'#111111',
+        buttonBg:'#444',
+         buttonText: '#FFFFFF'
     },
   };
 
