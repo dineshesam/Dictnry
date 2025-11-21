@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { AppContext } from '../context/AppContext';
-// import { styles } from '../Styles/styles';
 import { getStyles } from '../Styles/styles';
 import WordCard from '../Components/WordItem';
 import { useTranslation } from 'react-i18next';
@@ -10,21 +9,23 @@ import CustomButton from '../Components/CustomButton';
 
 
 
-const HistoryScreen = ({navigation}) => {
+const HistoryScreen = ({ navigation }) => {
   const { history, clearHistory, currentTheme } = useContext(AppContext);
   const { theme, fontSize } = useContext(AppContext);
+  const { colors } = currentTheme;
 
-  const styles = getStyles(theme, fontSize);
+  const styles = getStyles(theme, fontSize, colors);
   const { t } = useTranslation();
-  
-const handleClearHistory = () => {
+
+  const handleClearHistory = () => {
     ConfirmationDialog({
       title: t('confirm'),
       message: t('clearHistoryMessage') || 'Are you sure you want to clear the history?',
       onConfirm: clearHistory,
-      onCancel: () => {}
+      onCancel: () => { }
     });
   };
+
 
 
   return (
@@ -33,13 +34,13 @@ const handleClearHistory = () => {
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
         <Text style={styles.title}>{t('recentSearches')} :</Text>
         {history.length > 0 && (
-         
 
-<CustomButton
-  label={t('clearHistory')}
-  onPress={handleClearHistory}
-  colors={currentTheme.colors}
-/>
+
+          <CustomButton
+            label={t('clearHistory')}
+            onPress={handleClearHistory}
+            colors={currentTheme.colors}
+          />
 
 
         )}

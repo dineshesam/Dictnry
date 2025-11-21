@@ -6,28 +6,28 @@ import i18n from 'i18next';
 const LanguageSelector = ({ languages, onSelect, colors }) => {
   const styles = getStyles(colors);
 
-const changeLanguage = (lang) => {
+  const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
   };
 
   return (
     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: 10 }}>
-  <OptionButton
-    label="English"
-    isActive={i18n.language === 'en'}
-    onPress={() => changeLanguage('en')}
-  />
-  <OptionButton
-    label="हिन्दी"
-    isActive={i18n.language === 'hi'}
-    onPress={() => changeLanguage('hi')}
-  />
-  <OptionButton
-    label="తెలుగు"
-    isActive={i18n.language === 'te'}
-    onPress={() => changeLanguage('te')}
-  />
-</View>
+      <OptionButton
+        label="English"
+        isActive={i18n.language === 'en'}
+        onPress={() => changeLanguage('en')}
+      />
+      <OptionButton
+        label="हिन्दी"
+        isActive={i18n.language === 'hi'}
+        onPress={() => changeLanguage('hi')}
+      />
+      <OptionButton
+        label="తెలుగు"
+        isActive={i18n.language === 'te'}
+        onPress={() => changeLanguage('te')}
+      />
+    </View>
 
   );
 };

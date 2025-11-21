@@ -4,14 +4,14 @@ import axios from 'axios';
 import dictionaryData from '../assets/dictionary.json';
 import { AppContext } from '../context/AppContext';
 import SearchBar from '../Components/SearchBar';
-
+import { Keyboard } from 'react-native';
 
 
 const HomeScreen = ({ navigation }) => {
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { theme, fontSize, useOnline,  currentTheme } = useContext(AppContext);
+  const { theme, fontSize, useOnline, currentTheme } = useContext(AppContext);
 
   // Fetch suggestions from Datamuse API
   const fetchSuggestions = async (text) => {
@@ -69,12 +69,12 @@ const HomeScreen = ({ navigation }) => {
     }
   };
 
-  
-   const { colors } = currentTheme;
+
+  const { colors } = currentTheme;
   const styles = createStyles(colors);
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      
+
 
       <ImageBackground
         style={styles.backgroundImage}
@@ -83,22 +83,23 @@ const HomeScreen = ({ navigation }) => {
         source={require("../assets/images/dictnarynobg.png")}
       >
         <SearchBar
-  value={query}
-  onChangeText={handleChange}
-  onClear={() => { setQuery(''); setSuggestions([]); }}
-  placeholder="Search a Word..."
-  iconColor={colors.tint}
-  backgroundColor={colors.card}
-  textColor={theme === 'dark' ? '#fff' : '#000'}
-  fontSize={Math.min(fontSize, 24)}
-/>
+          value={query}
+          onChangeText={handleChange}
+          onClear={() => { setQuery(''); setSuggestions([]); }}
+          placeholder="Search a Word..."
+          iconColor={colors.tint}
+          backgroundColor={colors.card}
+          textColor={theme === 'dark' ? '#fff' : '#000'}
+          fontSize={Math.min(fontSize, 24)}
+        />
 
         {loading ? (
-          <ActivityIndicator size="large" color={theme === 'dark' ? '#fff' : '#000'} style={{ marginTop: 20 , marginLeft: 80 }} />
+          <ActivityIndicator size="large" color={theme === 'dark' ? '#fff' : '#000'} style={{ marginTop: 20, marginLeft: 80 }} />
         ) : (
           <FlatList
             data={suggestions}
             keyExtractor={(item, index) => `${item.word}-${index}`}
+            keyboardShouldPersistTaps="handled"  // ✅ Important for taps to work while keyboard is open
             contentContainerStyle={{
               paddingHorizontal: 20,
               backgroundColor: theme === 'dark' ? 'rgba(30,30,30,0.7)' : 'rgba(0,0,0,0.3)',
@@ -107,12 +108,17 @@ const HomeScreen = ({ navigation }) => {
             }}
             renderItem={({ item }) => (
               <TouchableOpacity
+                activeOpacity={0.7}
+                delayPressIn={0} // ✅ Ensures immediate press handling
                 onPress={() => {
-                  if (useOnline) {
-                    fetchMeaning(item.word);
-                  } else {
-                    handleOfflineSelect(item.word);
-                  }
+                  Keyboard.dismiss(); // Close keyboard
+                  setTimeout(() => {  // ✅ Wait for keyboard animation to finish
+                    if (useOnline) {
+                      fetchMeaning(item.word);
+                    } else {
+                      handleOfflineSelect(item.word);
+                    }
+                  }, 50); // Small delay (50ms)
                 }}
               >
                 <Text style={{ fontSize, color: '#fff', paddingVertical: 10 }}>
@@ -127,13 +133,13 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-const createStyles = (colors) =>  StyleSheet.create({
+const createStyles = (colors) => StyleSheet.create({
   container: { flex: 1 },
   backgroundImage: {
     flex: 1,
     width: "100%",
     height: "100%",
-   
+
     alignItems: "flex-start",
     padding: 0
   },

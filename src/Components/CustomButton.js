@@ -13,8 +13,8 @@ const CustomButton = ({ label, onPress, colors, style, textStyle }) => {
 
 const getStyles = (colors) => StyleSheet.create({
   button: {
-   
-    width:160,
+
+    width: 160,
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 8,
@@ -23,7 +23,7 @@ const getStyles = (colors) => StyleSheet.create({
     borderColor: colors.border,
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft:1
+    marginLeft: 1
   },
   text: {
     fontSize: 16,

@@ -10,7 +10,7 @@ import Toast from 'react-native-toast-message';
 
 const WordMeaningScreen = ({ route }) => {
     const { word } = route.params;
-    const { addToHistory, addToBookmarks, theme, fontSize, bookmarks } = useContext(AppContext);
+    const { addToHistory, addToBookmarks, theme, fontSize, bookmarks, currentTheme } = useContext(AppContext);
     const [isSpeaking, setIsSpeaking] = useState(false);
     const styles = getStyles(theme, fontSize);
 
@@ -48,6 +48,7 @@ const WordMeaningScreen = ({ route }) => {
     //  const speakDef = () => {
     //     Tts.speak(word.definition);
     // };
+    const { colors } = currentTheme;
 
 
     return (
@@ -61,6 +62,7 @@ const WordMeaningScreen = ({ route }) => {
                         style={{
                             width: 24,
                             height: 24,
+                            tintColor: colors.text
 
                         }}
                     />
@@ -75,6 +77,7 @@ const WordMeaningScreen = ({ route }) => {
                         width: 24,
                         height: 24,
                         marginLeft: 180,
+                        tintColor: colors.text
 
                     }}
                 />

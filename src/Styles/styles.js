@@ -1,15 +1,19 @@
 import { StyleSheet } from 'react-native';
+import { AppContext } from '../context/AppContext';
+import React, { useContext } from 'react';
 
-export const getStyles = (theme = 'light', fontSize = 16) => StyleSheet.create({
+
+
+export const getStyles = (theme = 'light', fontSize = 16, colors = {}) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme === 'dark' ? '#222' : '#F5F5F5',
+    backgroundColor: colors.background,
     padding: 20,
   },
   title: {
     fontSize: Math.min(fontSize + 8, 24),
     fontWeight: '700',
-    color: theme === 'dark' ? '#fff' : '#333',
+    color: colors.text,
     marginBottom: 10,
   },
   word: {

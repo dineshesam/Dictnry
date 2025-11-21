@@ -2,7 +2,9 @@ import React, { createContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useColorScheme } from 'react-native';
 import { DefaultTheme, DarkTheme } from '@react-navigation/native';
-import dictionaryData from '../assets/dictionary.json';
+// import dictionaryData from '../assets/dictionary.json';
+import dictionaryData from '../utils/dictionary.json';
+import { CustomLightTheme, CustomDarkTheme } from '../Styles/colors'
 
 export const AppContext = createContext();
 
@@ -81,46 +83,48 @@ export const AppProvider = ({ children }) => {
     await AsyncStorage.setItem('bookmarks', JSON.stringify(updated));
   };
 
-  const removeBookmark = async (wordToRemove) => {
-    const updated = bookmarks.filter(item => item.word !== wordToRemove);
-    setBookmarks(updated);
-    await AsyncStorage.setItem('bookmarks', JSON.stringify(updated));
+  // const removeBookmark = async (wordToRemove) => {
+  //   const updated = bookmarks.filter(item => item.word !== wordToRemove);
+  //   setBookmarks(updated);
+  //   await AsyncStorage.setItem('bookmarks', JSON.stringify(updated));
+  // };
+  const removeBookmark = (wordToRemove) => {
+    setBookmarks((prev) => prev.filter((item) => item.word !== wordToRemove));
   };
-
   // ✅ Theme integration
   const systemTheme = useColorScheme(); // 'light' or 'dark'
   const activeTheme = theme === 'system' ? systemTheme : theme;
 
-  const CustomLightTheme = {
-    ...DefaultTheme,
-    colors: {
-      ...DefaultTheme.colors,
-      background: '#FFFFFF',
-      text: '#111111',
-      card: '#ebebf4ff',
-      border: '#E6E6E6',
-      tint: '#49575aff',
-      tabBg:'#d7e2e8ff',
-      buttonBg:'black' ,
-      buttonText: '#FFFFFF' // Off-white / book page color
+  // const CustomLightTheme = {
+  //   ...DefaultTheme,
+  //   colors: {
+  //     ...DefaultTheme.colors,
+  //     background: '#FFFFFF',
+  //     text: '#111111',
+  //     card: '#ebebf4ff',
+  //     border: '#E6E6E6',
+  //     tint: '#49575aff',
+  //     tabBg:'#d7e2e8ff',
+  //     buttonBg:'black' ,
+  //     buttonText: '#FFFFFF' // Off-white / book page color
 
-    },
-  };
+  //   },
+  // };
 
-  const CustomDarkTheme = {
-    ...DarkTheme,
-    colors: {
-      ...DarkTheme.colors,
-      background: '#000000',
-      text: '#FFFFFF',
-      card: '#4a4a4eff',
-      border: '#333333',
-      tint: '#c2c6c7ff',
-       tabBg:'#111111',
-        buttonBg:'#444',
-         buttonText: '#FFFFFF'
-    },
-  };
+  // const CustomDarkTheme = {
+  //   ...DarkTheme,
+  //   colors: {
+  //     ...DarkTheme.colors,
+  //     background: '#000000',
+  //     text: '#FFFFFF',
+  //     card: '#4a4a4eff',
+  //     border: '#333333',
+  //     tint: '#c2c6c7ff',
+  //      tabBg:'#111111',
+  //       buttonBg:'#444',
+  //        buttonText: '#FFFFFF'
+  //   },
+  // };
 
   const currentTheme = activeTheme === 'dark' ? CustomDarkTheme : CustomLightTheme;
 

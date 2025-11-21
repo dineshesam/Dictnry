@@ -16,7 +16,7 @@ const HeaderTitle = ({ title }) => {
       </Text>
 
       {/* Show icons only on Home screen */}
-      {(title === 'Home' || title === "హోమ్"|| title === 'होम') && (
+      {(title === 'Home' || title === "హోమ్" || title === 'होम') && (
         <>
           {/* Online Icon */}
           {useOnline && (
