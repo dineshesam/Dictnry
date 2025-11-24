@@ -1,0 +1,21 @@
+{
+  "Home": "Home",
+  "bookmarks": "Bookmarks",
+  "history": "History",
+  "settings": "Settings",
+  "addBookmark": "Add to Bookmark",
+  "wordOfTheDay": "Word of the Day",
+  "Refresh": "Refresh",
+  "Light": "Light",
+  "Dark": "Dark",
+  "system": "System",
+  "fontsize": "Font Size",
+  "chooseLanguage": "Choose Language",
+  "deleteSelected": "Delete Selected",
+  "cancel": "Cancel",
+  "recentSearches": "Recent Searches",
+  "clearHistory": "Clear History",
+  "wordMeaning": "Word Meaning",
+  "enableOnlineSearch": "Enable Online Search",
+  "searchWord": "Search a Word....!"
+}

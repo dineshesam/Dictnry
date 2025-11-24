@@ -1,0 +1,28 @@
+Dictionary/
+│
+├── ios/                     # Native iOS files
+├── android/                 # Native android files 
+├── node_modules/            # Dependencies
+├── src/
+│   ├── assets/              # Images, icons, fonts
+│   ├── Components/          # Reusable UI components
+│   ├── context/             # Global state management (AppContext)
+│   ├── i18n/                # Internationalization (language support)
+│   ├── navigation/          # Navigation setup (Tab, Stack)
+│   ├── screens/             # App screens (Home, Settings, etc.)
+│   ├── Styles/              # Centralized styling files
+│   ├── utils/               # Utility functions (dictionary data)
+│
+├── .gitignore               # Git ignore rules
+├── App.js                   # Entry point
+
+
+
+
+
+
+
+
+
+
+h
