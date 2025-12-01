@@ -7,6 +7,8 @@ import SearchBar from '../Components/SearchBar';
 import { Keyboard } from 'react-native';
 
 
+
+
 const HomeScreen = ({ navigation }) => {
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
@@ -92,9 +94,10 @@ const HomeScreen = ({ navigation }) => {
           textColor={theme === 'dark' ? '#fff' : '#000'}
           fontSize={Math.min(fontSize, 24)}
         />
+        
 
         {loading ? (
-          <ActivityIndicator size="large" color={theme === 'dark' ? '#fff' : '#000'} style={{ marginTop: 20, marginLeft: 80 }} />
+          <ActivityIndicator size="large" color={theme === 'dark' ? '#622ab1ff' : '#000'} style={{ marginTop: 20, marginLeft: 80 }} />
         ) : (
           <FlatList
             data={suggestions}

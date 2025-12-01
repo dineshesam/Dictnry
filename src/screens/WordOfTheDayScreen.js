@@ -4,6 +4,7 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-nati
 import { AppContext } from '../context/AppContext';
 import { useTranslation } from 'react-i18next';
 import CustomButton from '../Components/CustomButton';
+import Images from '../assets/images';
 
 const WordOfTheDayScreen = () => {
   const { dictionary, currentTheme } = useContext(AppContext);
@@ -32,6 +33,8 @@ const WordOfTheDayScreen = () => {
           <Text style={[styles.definition, { color: colors.text, fontSize: Math.min(fontSize, 24) }]}>{wordOfTheDay.definition}</Text>
         </>
       )}
+     
+              
       <CustomButton
         label={`🔄 ${t('Refresh')}`}
         onPress={refreshWord}

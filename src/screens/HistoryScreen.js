@@ -6,13 +6,15 @@ import WordCard from '../Components/WordItem';
 import { useTranslation } from 'react-i18next';
 import ConfirmationDialog from '../Components/ConfirmationDialog'
 import CustomButton from '../Components/CustomButton';
+import useDynamicStyles from '../hooks/useDynamicStyles';
 
 
 
 const HistoryScreen = ({ navigation }) => {
   const { history, clearHistory, currentTheme } = useContext(AppContext);
   const { theme, fontSize } = useContext(AppContext);
-  const { colors } = currentTheme;
+  // const { colors } = currentTheme;
+   const { colors } = useDynamicStyles();
 
   const styles = getStyles(theme, fontSize, colors);
   const { t } = useTranslation();
@@ -32,7 +34,7 @@ const HistoryScreen = ({ navigation }) => {
     <View style={styles.container}>
 
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Text style={styles.title}>{t('recentSearches')} :</Text>
+        <Text style={[styles.title, { fontWeight: '600',fontFamily:'NotoSansTelugu_ExtraCondensed-Black' }]}>{t('recentSearches')} :</Text>
         {history.length > 0 && (
 
 

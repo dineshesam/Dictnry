@@ -2,16 +2,22 @@ import React, { useContext } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { AppContext } from '../context/AppContext';
 import { useNavigation } from '@react-navigation/native';
+import i18n from 'i18next';
+
 
 const HeaderTitle = ({ title }) => {
   const { useOnline, currentTheme } = useContext(AppContext);
   const navigation = useNavigation();
   const { colors } = currentTheme;
+   const curL = i18n.language; 
+
+  console.log('Current Language:', curL);
 
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
       {/* Title */}
-      <Text style={{ fontSize: 24, fontWeight: '700', color: colors.text, marginHorizontal: 40 }}>
+      <Text style={{ fontSize: 24,fontFamily: 'NotoSansTelugu_ExtraCondensed-Black',
+    fontWeight: '600', color: colors.text, marginHorizontal: 40 }}>
         {title}
       </Text>
 

@@ -3,6 +3,7 @@ import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { AppContext } from '../context/AppContext';
 import { getStyles } from '../Styles/styles';
 import Tts from 'react-native-tts';
+import useDynamicStyles from '../hooks/useDynamicStyles';
 
 const WordScreen = ({ route }) => {
   const { wordTitle } = route.params;
@@ -10,7 +11,8 @@ const WordScreen = ({ route }) => {
   const { bookmarks, theme, fontSize, history, currentTheme } = useContext(AppContext);
   const styles = getStyles(theme, fontSize);
   const [isSpeaking, setIsSpeaking] = useState(false)
-  const { colors } = currentTheme;
+  // const { colors } = currentTheme;
+   const { colors, textStyles } = useDynamicStyles();
 
 
   const wordData = bookmarks.find(item => item.word === wordTitle)
@@ -44,7 +46,7 @@ const WordScreen = ({ route }) => {
   return (
     <ScrollView style={styles.container}>
       <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
-        <Text style={styles.word}>{wordData.word}</Text>
+        <Text style={textStyles.word}>{wordData.word}</Text>
         <TouchableOpacity onPress={() => Tts.speak(wordData.word)}>
           <Image
             source={require('../assets/icons/speaker-filled-audio-tool.png')}

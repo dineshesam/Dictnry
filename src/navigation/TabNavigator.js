@@ -34,7 +34,7 @@ const HomeStack = () => {
         name="Word Meaning"
         component={WordMeaningScreen}
         options={{
-          headerTitle: () => <HeaderTitle title={t('Word Meaning')} />,
+          headerTitle: () => <HeaderTitle title={t('wordMeaning')} />,
           headerTitleAlign: 'center',
         }}
       />
@@ -67,7 +67,7 @@ const BookmarkStack = () => {
         name="bmws"
         component={WordScreen}
         options={{
-          headerTitle: () => <HeaderTitle title={t('Word Meaning')} />,
+          headerTitle: () => <HeaderTitle title={t('wordMeaning')} />,
           headerTitleAlign: 'center',
         }}
       />
@@ -92,7 +92,7 @@ const HistoryStack = () => {
         name="bmws"
         component={WordScreen}
         options={{
-          headerTitle: () => <HeaderTitle title={t('Word Meaning')} />,
+          headerTitle: () => <HeaderTitle title={t('wordMeaning')} />,
           headerTitleAlign: 'center',
         }}
       />

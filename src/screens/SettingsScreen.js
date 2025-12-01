@@ -7,6 +7,7 @@ import OptionButton from '../Components/OptionButton';
 import FontSizeAdjuster from '../Components/FontSizeAdjuster';
 import LanguageSelector from '../Components/LanguageSelector';
 
+
 const SettingsScreen = () => {
   const {
     theme, setTheme,
@@ -84,7 +85,7 @@ const SettingsScreen = () => {
 
 const createStyles = (colors) => StyleSheet.create({
   container: { flex: 1, padding: 24 },
-  sectionTitle: { fontSize: 18, fontWeight: '600', marginBottom: 10 },
+  sectionTitle: { fontSize: 24, fontFamily:'NotoSansTelugu_ExtraCondensed-Black', fontWeight: '600', marginBottom: 10 },
   row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginVertical: 20 },
   optionButton: { padding: 10, borderWidth: 1, borderColor: colors.border, borderRadius: 8, marginHorizontal: 5, backgroundColor: colors.card },
   optionText: { fontSize: 16, color: colors.text },

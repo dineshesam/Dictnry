@@ -22,7 +22,38 @@ Dictionary/
 
 
 
+MyProject/
+│
+├── ios/                     # Native iOS files
+├── android/                 # Native Android files
+├── node_modules/            # Dependencies
+├──screens/                  # App screens
+|       ├── About.js
+|       ├── AudioRecorder.js
+|       ├── Example.js
+|       ├── SpeechText.js
+|       ├── TextToSpeech.js
+|       ├── VideoStream.js
+├── src/
+│   ├── Assets/              # Images, icons, fonts
+│   ├── components/          # Reusable UI components
+│   │   ├── SpeechComponent.js
+│   │   ├── USBFileList.js
+│   |
+│   ├── utils/               # Utility functions
+│
+├── .gitignore               # Git ignore rules
+├── App.js                   # Entry point
 
 
 
+ 
+
+
+
+
+
+
+
+ 
 h
