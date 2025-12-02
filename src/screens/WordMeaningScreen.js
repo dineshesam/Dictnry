@@ -113,13 +113,6 @@ const WordMeaningScreen = ({ route }) => {
     );
 };
 
-// const styles = StyleSheet.create({
-//     container: { flex: 1, padding: 20,paddingBottom:150 },
-//     word: { fontSize: 28, fontWeight: 'bold', marginBottom: 10 },
-//     definition: { fontSize: 18, marginBottom: 20 },
-//     iconButton: { padding: 8 },
-//     buttonText: { fontSize: 16, fontWeight: 'bold' },
-//     button: { padding: 10, backgroundColor: 'skyblue', borderRadius: 8,width:105,alignContent:'center',marginLeft:120 },
-// });
+
 
 export default WordMeaningScreen;

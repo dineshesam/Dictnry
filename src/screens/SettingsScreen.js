@@ -27,7 +27,7 @@ const SettingsScreen = () => {
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       {/* Theme Mode Selection */}
-      <Text style={[styles.sectionTitle, { color: colors.text }]}>{t('settings')}</Text>
+      <Text style={[styles.sectionTitle, { color: colors.text,marginBottom: -5 }]}>{t('chooseTheme')}</Text>
       <View style={styles.row}>
         <OptionButton
           label={t('Light')}
@@ -56,9 +56,9 @@ const SettingsScreen = () => {
       />
 
       {/* Online Search Toggle */}
-      <Text style={[styles.sectionTitle, { color: colors.text }]}>{t('enableOnlineSearch')}</Text>
+      <Text style={[styles.sectionTitle, { color: colors.text, marginTop: 15 }]}>{t('enableOnlineSearch')}</Text>
       <View style={[styles.row]}>
-        <View style={{ transform: [{ scaleX: 1.3 }, { scaleY: 1.3 }] }}>
+        <View style={{ transform: [{ scaleX: 1.3 }, { scaleY: 1.3 }],marginTop:-20 }}>
           <Switch
             value={useOnline}
             onValueChange={setUseOnline}

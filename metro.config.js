@@ -17,8 +17,8 @@ const config = {
     babelTransformerPath: require.resolve('react-native-svg-transformer'),
   },
   resolver: {
-    assetExts: assetExts.filter(ext => ext !== 'svg'), // ✅ Remove only svg
-    sourceExts: [...sourceExts, 'svg'], // ✅ Add only svg
+    assetExts: assetExts.filter(ext => ext !== 'svg'), //  Remove only svg
+    sourceExts: [...sourceExts, 'svg'], //  Add only svg
   },
 };
 

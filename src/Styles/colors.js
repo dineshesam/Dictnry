@@ -12,6 +12,7 @@ const CustomLightTheme = {
       tint: '#49575aff',
       tabBg:'#d7e2e8ff',
       buttonBg:'black' ,
+      inactiveButton:"#e2e6e7ff",
       buttonText: '#FFFFFF' // Off-white / book page color
 
     },
@@ -28,6 +29,7 @@ const CustomLightTheme = {
         tint: '#c2c6c7ff',
          tabBg:'#111111',
           buttonBg:'#444',
+           inactiveButton:"#1d1e1dff",
            buttonText: '#FFFFFF'
       },
     };

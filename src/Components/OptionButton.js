@@ -15,7 +15,7 @@ export default function OptionButton({ label, isActive, onPress }) {
         borderColor: colors.border,
         borderRadius: 8,
         marginHorizontal: 5,
-        backgroundColor: isActive ? colors.card : 'transparent',
+        backgroundColor: isActive ? colors.card : colors.inactiveButton,
       }}
     >
       <Text style={{ fontSize: 16, color: colors.text }}>{label}</Text>
